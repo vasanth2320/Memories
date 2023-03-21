@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import postRoutes from './routes/posts.js';
+
 const app = express();
 const PASSOWORD = 'hOC0SLb4fqk06Qww';
 
@@ -12,6 +14,8 @@ const CONNECTION_URL = `mongodb+srv://Memories-001:${PASSOWORD}@memories.rjliq11
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
+
+app.use('/posts', postRoutes);
 
 mongoose.connect(CONNECTION_URL, { 
         useNewUrlParser: true, 
