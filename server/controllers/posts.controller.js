@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import PostMessage from "../models/postMessage.js";
+import PostMessage from "../models/posts.model.js";
 
 export const getPosts = async (req, res) => {
   try {
@@ -65,8 +65,13 @@ export const likePost = async (req, res) => {
   }
 
   const post = await PostMessage.findById(id);
-  const updatedPost = await PostMessage.findByIdAndUpdate(id, {
-    likeCount: post.likeCount + 1}, { new: true});
+  const updatedPost = await PostMessage.findByIdAndUpdate(
+    id,
+    {
+      likeCount: post.likeCount + 1,
+    },
+    { new: true }
+  );
 
   res.json(updatedPost);
 };
