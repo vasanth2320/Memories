@@ -15,7 +15,7 @@ import moment from "moment";
 
 import { deletePost, likePost } from "../../store/post/post.action.js";
 
-import useStyles from "./post.styles.jsx";
+import useStyles from "./post-item.styles.jsx";
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
