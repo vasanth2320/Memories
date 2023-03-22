@@ -4,7 +4,7 @@ import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { createPost, updatePost } from '../../actions/posts';
+import { createPost, updatePost } from '../../store/post/post.action';
 
 import useStyles from './form.styles.jsx';
 
