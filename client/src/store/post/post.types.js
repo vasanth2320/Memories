@@ -1,7 +1,9 @@
-export const POST_ACTION_TYPES = {
+const POST_ACTION_TYPES = {
     UPDATE: 'UPDATE',
     FETCH_ALL: 'FETCH_ALL',
     CREATE: 'CREATE',
     DELETE: 'DELETE',
     LIKE: 'LIKE'
-}
+};
+
+export default POST_ACTION_TYPES;

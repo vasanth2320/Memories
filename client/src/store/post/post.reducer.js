@@ -1,4 +1,4 @@
-import { POST_ACTION_TYPES } from './post.types';
+import POST_ACTION_TYPES from './post.types';
 
 export const POSTS_INITIAL_STATE = {
     posts: []
