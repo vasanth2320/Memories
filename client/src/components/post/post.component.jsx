@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import moment from 'moment';
 
-import { deletePost } from '../../store/post/post.action.js';
+import { deletePost, likePost } from '../../store/post/post.action.js';
 
 import useStyles from './post.styles.jsx';
 
@@ -34,10 +34,9 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography gutterBottom>{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size='small' color='primary' onClick={() => {}}>
+                <Button size='small' color='primary' onClick={() => dispatch(likePost(post._id))}>
                     <ThumbUpAltIcon fontSize='small' />
-                    Like
-                    {post.likeCount}
+                    {`Like ${post.likeCount}`}
                 </Button>
                 <Button size='small' color='primary' onClick={() => dispatch(deletePost(post._id))}>
                     <DeleteIcon fontSize='small' />

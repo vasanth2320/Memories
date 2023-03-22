@@ -9,7 +9,8 @@ export const postReducer = (posts = POSTS_INITIAL_STATE, action = {}) => {
 
     switch (type) {
         case POST_ACTION_TYPES.UPDATE:
-            return posts.map((post) => post._id === payload._id ? payload : post)
+        case POST_ACTION_TYPES.LIKE:
+            return posts.map((post) => post._id === payload._id ? payload : post);
         case POST_ACTION_TYPES.FETCH_ALL:
             return payload;
         case POST_ACTION_TYPES.CREATE:
