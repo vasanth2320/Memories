@@ -1,32 +1,43 @@
-import * as api from '../../services/api/request';
+import * as api from "../../services/api/request";
 
 // Action Creators
 export const getPosts = () => async (dispatch) => {
-    try {
-        const { data } = await api.fetchPosts();
+  try {
+    const { data } = await api.fetchPosts();
 
-        dispatch({ type: 'FETCH_ALL', payload: data })
-    } catch(error) {
-        console.log(error);
-    };
+    dispatch({ type: "FETCH_ALL", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const createPost = (post) => async(dispatch) => {
-    try {
-        const { data } = await api.createPost(post);
+export const createPost = (post) => async (dispatch) => {
+  try {
+    const { data } = await api.createPost(post);
 
-        dispatch({ type: 'CREATE', payload: data});
-    } catch(error) {
-        console.log(error);
-    };
+    dispatch({ type: "CREATE", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const updatePost = (id, post) => async(dispatch) => {
-    try {
-        const { data } = await api.updatePost(id, post);
+export const updatePost = (id, post) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePost(id, post);
 
-        dispatch({ type: 'UPDATE', payload: data})
-    } catch (error) {
-        console.log(error);
-    }
+    dispatch({ type: "UPDATE", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    console.log('action')
+    await api.deletePost(id);
+
+    dispatch({ type: "DELETE", payload: id });
+  } catch (error) {
+    console.log(error);
+  }
 };

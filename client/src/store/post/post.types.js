@@ -1,5 +1,6 @@
 export const POST_ACTION_TYPES = {
     UPDATE: 'UPDATE',
     FETCH_ALL: 'FETCH_ALL',
-    CREATE: 'CREATE'
+    CREATE: 'CREATE',
+    DELETE: 'DELETE'
 }

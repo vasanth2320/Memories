@@ -14,6 +14,8 @@ export const postReducer = (posts = POSTS_INITIAL_STATE, action = {}) => {
             return payload;
         case POST_ACTION_TYPES.CREATE:
             return [ ...posts, payload];
+        case POST_ACTION_TYPES.DELETE:
+            return posts.filter((post) => post._id !== payload);
         default:
             return posts;
     };
