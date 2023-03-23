@@ -8,6 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { useDispatch } from 'react-redux';
 
 import { signInWithGooglePopup } from "../../services/firebase/firebase.services";
 import Input from "./input";
@@ -19,6 +20,7 @@ const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {};
 
@@ -31,8 +33,13 @@ const Auth = () => {
 
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
-    console.log(user);
-  }
+
+    try {
+      dispatch({ type: 'AUTH', payload: { user }})
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
