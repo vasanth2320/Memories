@@ -15,12 +15,13 @@ const Navbar = () => {
     const location = useLocation();
     const dispatch = useDispatch();
 
+    
     const logout = () => {
         dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
         history.push('/auth');
         setUser(null);
     };
-
+    
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
@@ -35,7 +36,9 @@ const Navbar = () => {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} src={user.photoURL} alt={user.displayName}>
-                            {user.displayName[0]}
+                            {
+                                user?.result ? user?.result.name[0] : user?.displayName[0]
+                            }
                         </Avatar>
                         <Typography className={classes.userName}>
                             {user.displayName}

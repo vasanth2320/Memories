@@ -8,7 +8,7 @@ import {
   Button,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { signin, signup } from "../../store/auth/auth.action";
@@ -20,38 +20,38 @@ import Icon from "./icon";
 import useStyles from "./auth.styles";
 
 const INITIAL_STATE = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: '',
-  confirmPassword: ''
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
 };
 
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [ formData, setFormData ] = useState(INITIAL_STATE);
+  const [formData, setFormData] = useState(INITIAL_STATE);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
-    event.preventDefault;
+    event.preventDefault();
 
-    if(isSignUp){
-      dispatch(signup(formData, history))
+    if (isSignUp) {
+      dispatch(signup(formData, history));
     } else {
-      dispatch(signin(formData, history))
+      dispatch(signin(formData, history));
     }
   };
 
   const handleChange = (event) => {
-    setFormData({ ...FormData, [ event.target.name ] : event.target.value});
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const switchMode = () => {
     setIsSignUp((prevShowPassword) => !prevShowPassword);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
 
   const signInWithGoogle = async () => {
@@ -59,7 +59,7 @@ const Auth = () => {
       const { user } = await signInWithGooglePopup();
 
       dispatch({ type: AUTH_ACTION_TYPES.AUTH, payload: user });
-      history.push('/');
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -126,16 +126,16 @@ const Auth = () => {
           >
             {isSignUp ? "Sign Up" : "Sign In"}
           </Button>
-            <Button
-                className={classes.googleButton}
-                color="primary"
-                fullWidth
-                onClick={signInWithGoogle}
-                startIcon={<Icon />}
-                variant="contained"
-              >
-                Google Sign In
-            </Button>
+          <Button
+            className={classes.googleButton}
+            color="primary"
+            fullWidth
+            onClick={signInWithGoogle}
+            startIcon={<Icon />}
+            variant="contained"
+          >
+            Google Sign In
+          </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
