@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import {
-  Avatar,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-  Button,
-} from "@material-ui/core";
+import { Avatar, Paper, Grid, Typography, Container, Button } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { signin, signup } from "../../store/auth/auth.action";
-import AUTH_ACTION_TYPES from "../../store/auth/auth.types";
+import { signin, signup } from "../../store/authentication/authentication.action";
+import AUTH_ACTION_TYPES from "../../store/authentication/authentication.types";
 import { signInWithGooglePopup } from "../../services/firebase/firebase.services";
-import Input from "./input";
-import Icon from "./icon";
+import FormInput from "../../components/form-input/form-input";
+import Icon from "../../assets/icon";
 
-import useStyles from "./auth.styles";
+import useStyles from "./authentication.styles";
 
 const INITIAL_STATE = {
   firstName: "",
@@ -79,14 +72,14 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignUp && (
               <>
-                <Input
+                <FormInput
                   name="firstName"
                   label="First Name"
                   handleChange={handleChange}
                   autoFocus
                   half
                 />
-                <Input
+                <FormInput
                   name="lastName"
                   label="Last Name"
                   handleChange={handleChange}
@@ -95,13 +88,13 @@ const Auth = () => {
                 />
               </>
             )}
-            <Input
+            <FormInput
               name="email"
               label="Email Address"
               handleChange={handleChange}
               type="email"
             />
-            <Input
+            <FormInput
               name="password"
               label="Password"
               handleChange={handleChange}
@@ -109,7 +102,7 @@ const Auth = () => {
               handleShowPassword={handleShowPassword}
             />
             {isSignUp && (
-              <Input
+              <FormInput
                 name="confirmPassword"
                 label="Confirm Password"
                 handleChange={handleChange}

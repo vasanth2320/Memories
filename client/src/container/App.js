@@ -2,9 +2,9 @@ import React from "react";
 import { Container } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
-import Navbar from "../components/Navbar/navbar.component";
-import Home from "../components/home/home";
-import Auth from "../components/auth/auth";
+import Navbar from "../routes/navigation/navigation.route";
+import Home from "../routes/home/home.route";
+import Auth from "../routes/authentication/authentication.route";
 
 const App = () => {
 

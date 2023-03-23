@@ -3,10 +3,10 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
-import AUTH_ACTION_TYPES from "../../store/auth/auth.types";
+import AUTH_ACTION_TYPES from "../../store/authentication/authentication.types";
 
 import memories from '../../assets/images/memories.png';
-import useStyles from './navbar.styles';
+import useStyles from './navigation.styles';
 
 const Navbar = () => {
     const classes = useStyles();
@@ -36,12 +36,10 @@ const Navbar = () => {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} src={user.photoURL} alt={user.displayName}>
-                            {
-                                user?.result ? user?.result.name[0] : user?.displayName[0]
-                            }
+                            {user?.result ? user?.result.name[0] : user?.displayName[0]}
                         </Avatar>
                         <Typography className={classes.userName}>
-                            {user.displayName}
+                            {user?.result ? user?.result.name : user?.displayName}
                         </Typography>
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>

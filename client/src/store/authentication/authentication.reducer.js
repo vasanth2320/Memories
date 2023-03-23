@@ -1,4 +1,4 @@
-import AUTH_ACTION_TYPES from "./auth.types";
+import AUTH_ACTION_TYPES from "./authentication.types";
 
 export const AUTH_INITIAL_STATE = {
   auth: [],

@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 
 import { createPost, updatePost } from "../../store/post/post.action";
 
-import useStyles from "./form.styles.jsx";
+import useStyles from "./create-post.styles.jsx";
 
-const Form = ({ currentId, setCurrentId }) => {
+const CreatePost = ({ currentId, setCurrentId }) => {
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
@@ -134,4 +134,4 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 };
 
-export default Form;
+export default CreatePost;
