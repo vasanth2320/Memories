@@ -11,6 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
+import { signin, signup } from "../../store/auth/auth.action";
 import AUTH_ACTION_TYPES from "../../store/auth/auth.types";
 import { signInWithGooglePopup } from "../../services/firebase/firebase.services";
 import Input from "./input";
@@ -18,16 +19,35 @@ import Icon from "./icon";
 
 import useStyles from "./auth.styles";
 
+const INITIAL_STATE = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+};
+
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [ formData, setFormData ] = useState(INITIAL_STATE);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault;
 
-  const handleChange = () => {};
+    if(isSignUp){
+      dispatch(signup(formData, history))
+    } else {
+      dispatch(signin(formData, history))
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({ ...FormData, [ event.target.name ] : event.target.value});
+  };
 
   const switchMode = () => {
     setIsSignUp((prevShowPassword) => !prevShowPassword);
@@ -111,7 +131,6 @@ const Auth = () => {
                 color="primary"
                 fullWidth
                 onClick={signInWithGoogle}
-                // disabled={renderProps.disabled}
                 startIcon={<Icon />}
                 variant="contained"
               >

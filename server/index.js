@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dontenv from 'dotenv';
 
 import postRoutes from './routes/posts.route.js';
+import userRoutes from './routes/users.route.js';
 
 const app = express();
 dontenv.config();
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
 
 mongoose.connect(MONGODB_URL, { 
         useNewUrlParser: true, 
