@@ -9,10 +9,12 @@ export const authReducer = (state = AUTH_INITIAL_STATE, action = {}) => {
 
   switch (type) {
     case AUTH_ACTION_TYPES.AUTH:
-        return 
+      localStorage.setItem('profile', JSON.stringify({...payload}));
+      return { ...state, auth: payload};
     case AUTH_ACTION_TYPES.LOGOUT:
-        return
+      localStorage.clear();
+      return { ...state, auth: null};
     default:
       return state;
-  }
+  };
 };
