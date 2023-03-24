@@ -9,7 +9,7 @@ export const authReducer = (state = AUTH_INITIAL_STATE, action = {}) => {
 
   switch (type) {
     case AUTH_ACTION_TYPES.AUTH:
-      localStorage.setItem('profile', JSON.stringify({...payload}));
+      localStorage.setItem('profile', JSON.stringify({...payload, token: payload.accessToken || payload.token}));
       return { ...state, auth: payload};
     case AUTH_ACTION_TYPES.LOGOUT:
       localStorage.clear();

@@ -10,7 +10,7 @@ import useStyles from "./create-post.styles.jsx";
 
 const CreatePost = ({ currentId, setCurrentId }) => {
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId ? state.posts.find((post) => post._id === currentId) : null
   );
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const CreatePost = ({ currentId, setCurrentId }) => {
     tags: "",
     selectedFile: "",
   });
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = JSON.parse(localStorage.getItem("profile"));
   const user_name = user?.result ? user?.result.name : user?.displayName;
 
   useEffect(() => {
@@ -32,24 +32,23 @@ const CreatePost = ({ currentId, setCurrentId }) => {
 
     if (currentId) {
       dispatch(updatePost(currentId, { ...postData, name: user_name }));
+      clear();
     } else {
       dispatch(createPost({ ...postData, name: user_name }));
-    }
-
-    clear();
-
-    if(!user_name) {
-      return (
-        <Paper className={classes.paper}>
-          <Typography variant="h6" align="center">
-              Please Sign In or Sign Up to create your own memories and like other's memories.
-          </Typography>
-        </Paper>
-      )
+      clear();
     }
   };
 
-
+  if (!user) {
+    return (
+      <Paper className={classes.paper} elevation={6}>
+        <Typography variant="h6" align="center">
+          Please Sign In to create your own memories and like other's
+          memories.
+        </Typography>
+      </Paper>
+    );
+  };
 
   const clear = () => {
     setCurrentId(null);
