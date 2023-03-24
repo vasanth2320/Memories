@@ -2,12 +2,15 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import path from 'path';
 import dontenv from 'dotenv';
 
-import api from './routes/api.js'
+import api from './routes/api.js';
 
 const app = express();
-dontenv.config();
+dontenv.config({
+    path: path.resolve('../.env')
+});
 
 const PORT = process.env.PORT || 5000;
 const MONGODB_URL = process.env.MONGODB_URL;
