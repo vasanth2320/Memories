@@ -16,12 +16,12 @@ const Navbar = () => {
     const location = useLocation();
     const dispatch = useDispatch();
 
-    
     const logout = () => {
         dispatch({ type: AUTH_ACTION_TYPES.LOGOUT });
         history.push('/auth');
         setUser(null);
     };
+    
     
     useEffect(() => {
         const token = user?.token;
@@ -33,7 +33,7 @@ const Navbar = () => {
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location]);
+    }, [location, user]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <AppBar className={classes.appBar} position="static" color="inherit">
