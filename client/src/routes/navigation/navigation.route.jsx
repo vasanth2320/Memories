@@ -33,7 +33,7 @@ const Navbar = () => {
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [location, user]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return(
         <AppBar className={classes.appBar} position="static" color="inherit">
