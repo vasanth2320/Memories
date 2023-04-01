@@ -1,11 +1,12 @@
 import express from "express";
 
-import { getPosts, createPost, updatePost, deletePost, likePost } from "./posts.controller.js";
+import { getPosts, getPostsBySearch, createPost, updatePost, deletePost, likePost } from "./posts.controller.js";
 import auth from "../../middleware/auth.js";
 
 const postRoutes = express.Router();
 
 postRoutes.get("/", getPosts);
+postRoutes.get("/search", getPostsBySearch);
 postRoutes.post("/", auth, createPost);
 postRoutes.patch("/:id", auth, updatePost);
 postRoutes.delete("/:id", auth, deletePost);

@@ -25,7 +25,7 @@ mongoose.connect(MONGODB_URL, {
         useNewUrlParser: true, 
         // useUnifiedTology: true // Error: option useunifiedtology is not supported
     })
-    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}\nMongoDB is connected`)))
     .catch((error) => console.log(error.message));
 
 // mongoose.set("useFindAndModify", false);

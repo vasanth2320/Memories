@@ -7,7 +7,7 @@ import ChipInput from 'material-ui-chip-input';
 import Paginate from "../../components/pagination/pagination.component";
 import Posts from "../../components/posts/posts.component";
 import CreatePost from "../../components/create-post/create-post.component";
-import { getPosts } from '../../store/post/post.action';
+import { getPosts, getPostsBySearch } from '../../store/post/post.action';
 
 import useStyles from './home.styles';
 
@@ -34,7 +34,8 @@ const Home = () => {
 
     const searchPost = () => {
         if (search.trim() || tags) {
-            // dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            console.log(tags.join(','))
+            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
             // history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
         } else {
         history.push('/');
