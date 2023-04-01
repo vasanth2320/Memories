@@ -6,7 +6,8 @@ import decode from 'jwt-decode';
 
 import AUTH_ACTION_TYPES from "../../store/authentication/authentication.types";
 
-import memories from '../../assets/images/memories.png';
+import memoriesLogo from '../../assets/images/memoriesLogo.png';
+import memoriesText from '../../assets/images/memoriesText.png';
 import useStyles from './navigation.styles';
 
 const Navbar = () => {
@@ -37,10 +38,10 @@ const Navbar = () => {
 
     return(
         <AppBar className={classes.appBar} position="static" color="inherit">
-            <div className={classes.brandContainer}>
-                <Typography component={Link} to='/' className={classes.heading} variant="h2" align="center"> Memories </Typography>
-                <img className={classes.image} src={memories} alt="memories" height="60"/>
-            </div>
+            <Link to="/" className={classes.brandContainer}>
+                <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" />
+                <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
+            </Link>
             {user && (
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.profile}>

@@ -1,9 +1,11 @@
 import * as api from "../../services/api/api.services";
 import POST_ACTION_TYPES from "./post.types";
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchPosts();
+    const { data } = await api.fetchPosts(page);
+
+    console.log(data)
 
     dispatch({ type: POST_ACTION_TYPES.SET_POST_ITEMS, payload: data });
   } catch (error) {
@@ -14,8 +16,8 @@ export const getPosts = () => async (dispatch) => {
 export const getPostsBySearch = (searchQuery) => async(dispatch) => {
   try {
     const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
-
-    console.log(data)
+    
+    dispatch({ type: POST_ACTION_TYPES.SET_POST_ITEMS_BY_SEARCH, payload: data });
   } catch (error) {
     console.log(error);
   }
