@@ -1,7 +1,8 @@
 import POST_ACTION_TYPES from "./post.types";
 
 export const POST_INITIAL_STATE = {
-  state: [],
+  posts: [],
+  isLoading: true,
 };
 
 export const postReducer = (state = POST_INITIAL_STATE, action = {}) => {
@@ -9,7 +10,10 @@ export const postReducer = (state = POST_INITIAL_STATE, action = {}) => {
 
   switch (type) {
     case POST_ACTION_TYPES.SET_UPDATED_POST:
-      return state.map((post) => (post._id === payload._id ? payload : post));
+      return {
+        ...state,
+        posts: state.posts.map((post) => (post._id === payload._id ? payload : post)),
+      };
     case POST_ACTION_TYPES.SET_POST_ITEMS:
       return {
         ...state,
@@ -23,9 +27,13 @@ export const postReducer = (state = POST_INITIAL_STATE, action = {}) => {
         posts: payload,
       };
     case POST_ACTION_TYPES.SET_NEW_POST:
-      return [...state, payload];
+      return { ...state, posts: [...state.posts, payload] };
     case POST_ACTION_TYPES.SET_DELETE_POST:
-      return state.filter((post) => post._id !== payload);
+      return { ...state, posts: state.posts.filter((post) => post._id !== payload) };
+    case POST_ACTION_TYPES.START_LOADING:
+      return { ...state, isLoading: true };
+    case POST_ACTION_TYPES.END_LOADING:
+      return { ...state, isLoading: false };
     default:
       return state;
   }

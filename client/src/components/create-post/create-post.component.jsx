@@ -61,7 +61,7 @@ const CreatePost = ({ currentId, setCurrentId }) => {
   };
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         noValidate

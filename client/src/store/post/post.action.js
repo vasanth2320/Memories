@@ -3,11 +3,23 @@ import POST_ACTION_TYPES from "./post.types";
 
 export const getPosts = (page) => async (dispatch) => {
   try {
+    dispatch({ type: POST_ACTION_TYPES.START_LOADING })
     const { data } = await api.fetchPosts(page);
-
-    console.log(data)
-
+    
     dispatch({ type: POST_ACTION_TYPES.SET_POST_ITEMS, payload: data });
+    dispatch({ type: POST_ACTION_TYPES.END_LOADING })
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPost = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: POST_ACTION_TYPES.START_LOADING })
+    const { data } = await api.fetchPost(id);
+    
+    dispatch({ type: POST_ACTION_TYPES.SET_POST_ITEM, payload: data });
+    dispatch({ type: POST_ACTION_TYPES.END_LOADING })
   } catch (error) {
     console.log(error);
   }
@@ -15,9 +27,11 @@ export const getPosts = (page) => async (dispatch) => {
 
 export const getPostsBySearch = (searchQuery) => async(dispatch) => {
   try {
+    dispatch({ type: POST_ACTION_TYPES.START_LOADING })
     const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
     
     dispatch({ type: POST_ACTION_TYPES.SET_POST_ITEMS_BY_SEARCH, payload: data });
+    dispatch({ type: POST_ACTION_TYPES.END_LOADING })
   } catch (error) {
     console.log(error);
   }
@@ -25,9 +39,11 @@ export const getPostsBySearch = (searchQuery) => async(dispatch) => {
 
 export const createPost = (post) => async (dispatch) => {
   try {
+    dispatch({ type: POST_ACTION_TYPES.START_LOADING })
     const { data } = await api.createPost(post);
 
     dispatch({ type: POST_ACTION_TYPES.SET_NEW_POST, payload: data });
+    dispatch({ type: POST_ACTION_TYPES.END_LOADING })
   } catch (error) {
     console.log(error);
   }
