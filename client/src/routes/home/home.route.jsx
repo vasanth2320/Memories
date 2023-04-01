@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Grow, Grid, Container, Paper, AppBar, TextField, Button} from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
@@ -16,23 +16,53 @@ function useQuery() {
 }
 
 const Home = () => {
-    const [currentId, setCurrentId] = useState(null);
+    const [currentId, setCurrentId] = useState(0);
+    const [tags, setTags] = useState([]);
+    const [search, setSearch] = useState('');
+
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
-    const location = useLocation();
+    const query = useQuery();
+
+    const page = query.get('page') || 1;
+    const searchQuery = query.get('searchQuery');
 
     useEffect(() => {
       dispatch(getPosts());
     }, [dispatch]);
 
+    const searchPost = () => {
+        if (search.trim() || tags) {
+            // dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            // history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+        } else {
+        history.push('/');
+        }
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.keyCode === 13) {
+            searchPost();
+        }
+    };
+
+    const handleAddChip = (tag) => setTags([...tags, tag]);
+
+    const handleDeleteChip = (chipToDelete) => setTags(tags.filter((tag) => tag !== chipToDelete));
+
     return (<Grow in>
-                <Container>
-                    <Grid container className={classes.mainContainer} justifyContent="space-around" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
+                <Container maxWidth="xl">
+                <Grid container justifyContent="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
+                        <Grid item xs={12} sm={6} md={9}>
                             <Posts setCurrentId={setCurrentId}/>
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={6} md={3}>
+                            <AppBar className={classes.appBarSearch} position="static" color="inherit">
+                                <TextField onKeyDown={handleKeyPress} name="search" variant="outlined" label="Search Memories" fullWidth value={search} onChange={(event) => setSearch(event.target.value)} />
+                                <ChipInput style={{margin: '10px 0'}} value={tags} onAdd={handleAddChip} onDelete={handleDeleteChip} label="Search Tags" variant="outlined" />
+                                <Button onClick={searchPost} variant="contained" className={classes.searchButton} color="primary">Search</Button>
+                            </AppBar>
                             <CreatePost currentId={currentId} setCurrentId={setCurrentId}/>
                             <Paper elevation={6} className={classes.pagination}>
                                 <Paginate />
