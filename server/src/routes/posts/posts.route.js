@@ -5,9 +5,9 @@ import auth from "../../middleware/auth.js";
 
 const postRoutes = express.Router();
 
-postRoutes.get("/", getPosts);
-postRoutes.get("/:id", getPost);
 postRoutes.get("/search", getPostsBySearch);
+postRoutes.get("/", getPosts);
+postRoutes.get("/:id", getPost); // routes with id need to come after other routes
 postRoutes.post("/", auth, createPost);
 postRoutes.patch("/:id", auth, updatePost);
 postRoutes.delete("/:id", auth, deletePost);

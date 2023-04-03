@@ -20,17 +20,16 @@ const PostDetails = () => {
     dispatch(getPost(id));
   }, [dispatch, id]);
 
-  // useEffect(() => {
-  //   if (post) {
-  //     dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
-  //   }
-  // }, [dispatch, post]);
+  useEffect(() => {
+    if (post) {
+      dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
+      console.log('post', post.tags)
+    }
+  }, [dispatch, post]);
 
   if (!post) return null;
 
-   // eslint-disable-next-line
-   const openPost = (_id) => history.push(`/posts/${_id}`);
-   // eslint-disable-next-line
+  const openPost = (_id) => history.push(`/posts/${_id}`);
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
   if (isLoading) {
@@ -40,7 +39,6 @@ const PostDetails = () => {
       </Paper>
     );
   }
-
 
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
@@ -71,7 +69,7 @@ const PostDetails = () => {
           <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
         </div>
       </div>
-      {/* {!!recommendedPosts.length && (
+      {recommendedPosts.length && (
         <div className={classes.section}>
           <Typography gutterBottom variant="h5">You might also like:</Typography>
           <Divider />
@@ -87,7 +85,7 @@ const PostDetails = () => {
             ))}
           </div>
         </div>
-      )} */}
+      )}
     </Paper>
   )
 }

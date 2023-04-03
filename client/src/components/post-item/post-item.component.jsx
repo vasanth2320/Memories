@@ -9,7 +9,7 @@ import {
   Typography,
   CardMedia,
   // ButtonBase,
-  CardActionArea
+  // CardActionArea
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
@@ -59,7 +59,7 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raised elevation={6}>
-      <CardActionArea 
+      <div 
           // className={classes.cardActions} 
           onClick={openPost}>
         <CardMedia
@@ -102,7 +102,7 @@ const Post = ({ post, setCurrentId }) => {
             {post.message}
           </Typography>
         </CardContent>
-      </CardActionArea>
+      </div>
       <CardActions className={classes.cardActions}>
         <Button
           size="small"

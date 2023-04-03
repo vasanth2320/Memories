@@ -23,7 +23,6 @@ export const postReducer = (state = POST_INITIAL_STATE, action = {}) => {
         numberOfPages: payload.numberOfPages,
       };
     case POST_ACTION_TYPES.SET_POST_ITEM:
-      // state[post] = payload;
       return {
         ...state,
         post: payload,
