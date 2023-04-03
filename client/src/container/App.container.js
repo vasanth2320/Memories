@@ -8,16 +8,16 @@ import Auth from "../routes/authentication/authentication.route";
 import PostDetails from "../components/post-details/post-details.component";
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
     <Container maxWidth="xl">
       <Navbar />
       <Switch>
-        <Route path="/" exact component={() => <Redirect to='/posts' />}/>
-        <Route path='/posts' exact component={Home}/>
-        <Route path='/posts/search' exact component={Home}/>
-        <React path="/posts/:id" component={PostDetails} />
+        <Route path="/" exact component={() => <Redirect to="/posts" />} />
+        <Route path="/posts" exact component={Home} />
+        <Route path="/posts/search" exact component={Home} />
+        <Route path="/posts/:id" exact component={PostDetails} />
         <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)} />
       </Switch>
     </Container>

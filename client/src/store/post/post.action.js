@@ -13,7 +13,7 @@ export const getPosts = (page) => async (dispatch) => {
   }
 };
 
-export const getPost = (id) => async (dispatch) => {
+export const getPost = (id) => async(dispatch) => {
   try {
     dispatch({ type: POST_ACTION_TYPES.START_LOADING })
     const { data } = await api.fetchPost(id);

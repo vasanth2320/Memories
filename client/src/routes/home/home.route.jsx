@@ -7,7 +7,7 @@ import ChipInput from 'material-ui-chip-input';
 import Paginate from "../../components/pagination/pagination.component";
 import Posts from "../../components/posts/posts.component";
 import CreatePost from "../../components/create-post/create-post.component";
-import { getPosts, getPostsBySearch } from '../../store/post/post.action';
+import { getPostsBySearch } from '../../store/post/post.action';
 
 import useStyles from './home.styles';
 

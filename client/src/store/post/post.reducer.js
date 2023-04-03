@@ -2,6 +2,7 @@ import POST_ACTION_TYPES from "./post.types";
 
 export const POST_INITIAL_STATE = {
   posts: [],
+  post: [],
   isLoading: true,
 };
 
@@ -21,6 +22,12 @@ export const postReducer = (state = POST_INITIAL_STATE, action = {}) => {
         currentPage: payload.currentPage,
         numberOfPages: payload.numberOfPages,
       };
+    case POST_ACTION_TYPES.SET_POST_ITEM:
+      // state[post] = payload;
+      return {
+        ...state,
+        post: payload,
+      }
     case POST_ACTION_TYPES.SET_POST_ITEMS_BY_SEARCH:
       return {
         ...state,
