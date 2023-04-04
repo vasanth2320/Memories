@@ -20,7 +20,7 @@ const Post = ({ post, setCurrentId }) => {
   const [likes, setLikes] = useState(post?.likes);
 
   const user = JSON.parse(localStorage.getItem("profile"));
-  const userId = user?.result.googleId || user?.result?._id;
+  const userId = user?.uid || user?.result?._id;
   const hasLikedPost = post?.likes?.find((like) => like === userId);
 
   const handleLike = async () => {
@@ -79,7 +79,7 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
-      {user?.result?._id === post?.creator && (
+      {user?.result?._id || user?.uid === post?.creator && (
         <div className={classes.overlay2} name="edit">
           <Button
             onClick={(e) => {
@@ -125,7 +125,7 @@ const Post = ({ post, setCurrentId }) => {
         >
           <Likes />
         </Button>
-        {user?.result?._id === post.creator && (
+        {user?.result?._id || user?.uid === post.creator && (
           <Button
             size="small"
             color="primary"
