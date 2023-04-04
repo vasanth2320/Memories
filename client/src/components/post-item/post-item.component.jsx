@@ -9,7 +9,7 @@ import {
   Typography,
   CardMedia,
   // ButtonBase,
-  CardActionArea
+  CardActionArea,
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
@@ -59,34 +59,40 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raised elevation={6}>
-      {/* <CardActionArea 
-          // className={classes.cardActions} 
-          onClick={openPost}> */}
+      <CardActionArea
+        // className={classes.cardActions}
+        onClick={openPost}
+      >
         <CardMedia
           className={classes.media}
           image={post.selectedFile}
           title={post.title}
         />
-        <div className={classes.overlay}>
-          <Typography variant="h6">{post.name}</Typography>
-          <Typography variant="body2">
-            {moment(post.createdAt).fromNow()}
-          </Typography>
+      </CardActionArea>
+      <div className={classes.overlay}>
+        <Typography variant="h6">{post.name}</Typography>
+        <Typography variant="body2">
+          {moment(post.createdAt).fromNow()}
+        </Typography>
+      </div>
+      {user?.result?._id === post?.creator && (
+        <div className={classes.overlay2} name="edit">
+          <Button
+            onClick={(e) => {
+              // e.stopPropagation();
+              setCurrentId(post._id);
+            }}
+            style={{ color: "white" }}
+            size="small"
+          >
+            <MoreHorizIcon fontSize="medium" />
+          </Button>
         </div>
-        {(user?.result?._id === post?.creator) && (
-          <div className={classes.overlay2} name="edit">
-            <Button
-              onClick={(e) => {
-                // e.stopPropagation();
-                setCurrentId(post._id);
-              }}
-              style={{ color: 'white' }}
-              size="small"
-            >
-              <MoreHorizIcon fontSize="medium" />
-            </Button>
-          </div>
-        )}
+      )}
+      <CardActionArea
+        // className={classes.cardActions}
+        onClick={openPost}
+      >
         <div className={classes.details}>
           <Typography variant="body2" color="textSecondary">
             {post.tags.map((tag) => `#${tag} `)}
@@ -105,7 +111,7 @@ const Post = ({ post, setCurrentId }) => {
             {post.message}
           </Typography>
         </CardContent>
-      {/* </CardActionArea> */}
+      </CardActionArea>
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
