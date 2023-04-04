@@ -24,9 +24,13 @@ const PostDetails = () => {
     if (post) {
       (async function (){ 
         const tags = await post?.tags;
-        dispatch(getPostsBySearch({ search: 'none', tags: tags.join(',') }));
-        })();
-    }
+        try {
+          dispatch(getPostsBySearch({ search: 'none', tags: tags.join(',') }));
+        } catch (error) {
+          // console.log(error);
+        }
+          })();
+      }
   }, [dispatch, post]);
 
   if (!post) return null;

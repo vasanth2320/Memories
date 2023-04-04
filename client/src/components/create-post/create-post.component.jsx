@@ -3,6 +3,7 @@ import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { createPost, updatePost } from "../../store/post/post.action";
 
@@ -14,6 +15,7 @@ const CreatePost = ({ currentId, setCurrentId }) => {
   );
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const [postData, setPostData] = useState({
     title: "",
     message: "",
@@ -34,7 +36,7 @@ const CreatePost = ({ currentId, setCurrentId }) => {
       dispatch(updatePost(currentId, { ...postData, name: user_name }));
       clear();
     } else {
-      dispatch(createPost({ ...postData, name: user_name }));
+      dispatch(createPost({ ...postData, name: user_name }, history));
       clear();
     }
   };
