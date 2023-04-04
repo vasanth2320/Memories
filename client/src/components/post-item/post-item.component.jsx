@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
@@ -23,26 +23,39 @@ import useStyles from "./post-item.styles.jsx";
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [likes, setLikes] = useState(post?.likes);
+
   const user = JSON.parse(localStorage.getItem("profile"));
+  const userId = user?.result.googleId || user?.result?._id;
+  const hasLikedPost = post?.likes?.find((like) => like === userId);
+
+  const handleLike = async () => {
+    dispatch(likePost(post._id));
+
+    if (hasLikedPost) {
+      setLikes(post.likes.filter((id) => id !== userId));
+    } else {
+      setLikes([...post.likes, userId]);
+    }
+  };
 
   const Likes = () => {
-    if (post?.likes?.length > 0) {
-      return post.likes.find((like) => like === (user || user?.result?._id)) ? (
+    if (likes.length > 0) {
+      return likes.find((like) => like === (user || user?.result?._id)) ? (
         <>
           <ThumbUpAltIcon fontSize="small" />
           &nbsp;
-          {post.likes.length > 2
-            ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
+          {likes.length > 2
+            ? `You and ${likes.length - 1} others`
+            : `${likes.length} like${likes.length > 1 ? "s" : ""}`}
         </>
       ) : (
         <>
           <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
+          &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
         </>
       );
     }
@@ -116,7 +129,7 @@ const Post = ({ post, setCurrentId }) => {
         <Button
           size="small"
           color="primary"
-          onClick={() => dispatch(likePost(post._id))}
+          onClick={handleLike}
           disabled={!user}
         >
           <Likes />
