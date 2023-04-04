@@ -42,19 +42,20 @@ const Navbar = () => {
                 <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" />
                 <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
             </Link>
-            {user && (
-                <Toolbar className={classes.toolbar}>
-                    <div className={classes.profile}>
-                        <Avatar className={classes.purple} src={user.photoURL} alt={user.displayName}>
-                            {user?.result ? user?.result.name[0] : user?.displayName[0]}
-                        </Avatar>
-                        <Typography className={classes.userName}>
-                            {user?.result ? user?.result.name : user?.displayName}
-                        </Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
-                    </div>
-                </Toolbar>
-            )}
+            <Toolbar className={classes.toolbar}>
+                {user ? (
+                        <div className={classes.profile}>
+                            <Avatar className={classes.purple} src={user.photoURL} alt={user.displayName}>
+                                {user?.result ? user?.result.name[0] : user?.displayName[0]}
+                            </Avatar>
+                            <Typography className={classes.userName}>
+                                {user?.result ? user?.result.name : user?.displayName}
+                            </Typography>
+                            <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
+                        </div>
+                ) : (<Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                )}
+            </Toolbar>
         </AppBar>
     );
 };

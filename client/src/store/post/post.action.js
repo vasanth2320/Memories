@@ -88,7 +88,6 @@ export const likePost = (id) => async (dispatch) => {
 
 export const commentPost = (value, id) => async (dispatch) => {
   try {
-    console.log(id);
     const { data } = await api.comment(value, id);
 
     dispatch({ type: POST_ACTION_TYPES.SET_POST_COMMENT, payload: data });

@@ -51,6 +51,8 @@ const Post = ({ post, setCurrentId }) => {
       );
     }
 
+    console.log(user?.result?._id + '1' || user?.uid)
+
     return (
       <>
         <ThumbUpAltOutlined fontSize="small" />
@@ -59,12 +61,11 @@ const Post = ({ post, setCurrentId }) => {
     );
   };
 
-  const openPost = () => history.push(`/posts/${post._id}`);
+  const openPost = () => history.push(`/posts/${post._id || post.uid }`);
 
   return (
     <Card className={classes.card} raised elevation={6}>
       <CardActionArea
-        // className={classes.cardActions}
         onClick={openPost}
       >
         <CardMedia
@@ -79,11 +80,11 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
-      {user?.result?._id || user?.uid === post?.creator && (
+      {(user?.result?._id === post?.creator || user?.uid === post?.creator) && (
         <div className={classes.overlay2} name="edit">
           <Button
             onClick={(e) => {
-              // e.stopPropagation();
+              e.stopPropagation();
               setCurrentId(post._id);
             }}
             style={{ color: "white" }}
@@ -112,7 +113,7 @@ const Post = ({ post, setCurrentId }) => {
             gutterBottom
             component="p"
           >
-            {post.message}
+            {post.message.slice(0,175) + '...'}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -125,7 +126,7 @@ const Post = ({ post, setCurrentId }) => {
         >
           <Likes />
         </Button>
-        {user?.result?._id || user?.uid === post.creator && (
+        {(user?.result?._id === post?.creator || user?.uid === post.creator) && (
           <Button
             size="small"
             color="primary"
