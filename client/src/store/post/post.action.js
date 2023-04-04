@@ -28,7 +28,6 @@ export const getPost = (id) => async(dispatch) => {
 export const getPostsBySearch = (searchQuery) => async(dispatch) => {
   try {
     dispatch({ type: POST_ACTION_TYPES.START_LOADING })
-    console.log('post.action')
     const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
     
     dispatch({ type: POST_ACTION_TYPES.SET_POST_ITEMS_BY_SEARCH, payload: data });

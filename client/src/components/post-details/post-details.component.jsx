@@ -20,12 +20,14 @@ const PostDetails = () => {
     dispatch(getPost(id));
   }, [dispatch, id]);
 
-  // useEffect(() => {
-  //   if (post) {
-  //     dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
-  //     console.log('post', post.tags)
-  //   }
-  // }, [dispatch, post]);
+  useEffect(() => {
+    if (post) {
+      (async function (){ 
+        const tags = await post?.tags;
+        dispatch(getPostsBySearch({ search: 'none', tags: tags.join(',') }));
+        })();
+    }
+  }, [dispatch, post]);
 
   if (!post) return null;
 
