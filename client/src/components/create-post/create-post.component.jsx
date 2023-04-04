@@ -9,8 +9,8 @@ import { createPost, updatePost } from "../../store/post/post.action";
 import useStyles from "./create-post.styles.jsx";
 
 const CreatePost = ({ currentId, setCurrentId }) => {
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((post) => post._id === currentId) : null
+  const post = useSelector((state) => 
+    currentId ? state.posts.posts.find((post) => post._id === currentId) : null
   );
   const classes = useStyles();
   const dispatch = useDispatch();

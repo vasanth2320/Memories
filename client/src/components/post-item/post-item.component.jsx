@@ -9,7 +9,7 @@ import {
   Typography,
   CardMedia,
   // ButtonBase,
-  // CardActionArea
+  CardActionArea
 } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
@@ -59,9 +59,9 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raised elevation={6}>
-      <div 
+      {/* <CardActionArea 
           // className={classes.cardActions} 
-          onClick={openPost}>
+          onClick={openPost}> */}
         <CardMedia
           className={classes.media}
           image={post.selectedFile}
@@ -73,12 +73,15 @@ const Post = ({ post, setCurrentId }) => {
             {moment(post.createdAt).fromNow()}
           </Typography>
         </div>
-        {user?.result?._id === post.creator && (
-          <div className={classes.overlay2}>
+        {(user?.result?._id === post?.creator) && (
+          <div className={classes.overlay2} name="edit">
             <Button
-              style={{ color: "white" }}
+              onClick={(e) => {
+                // e.stopPropagation();
+                setCurrentId(post._id);
+              }}
+              style={{ color: 'white' }}
               size="small"
-              onClick={() => setCurrentId(post._id)}
             >
               <MoreHorizIcon fontSize="medium" />
             </Button>
@@ -102,7 +105,7 @@ const Post = ({ post, setCurrentId }) => {
             {post.message}
           </Typography>
         </CardContent>
-      </div>
+      {/* </CardActionArea> */}
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
