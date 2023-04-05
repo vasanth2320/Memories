@@ -1,6 +1,6 @@
 # Memories
 
-First use npm install to install concurrently
+First use ```npm install``` to install concurrently
 
 Use ```npm install-server``` to install dependencies in server
 
