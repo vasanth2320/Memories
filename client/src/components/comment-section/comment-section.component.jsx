@@ -30,9 +30,6 @@ const CommentSection = ({ post }) => {
     commentsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  console.log(comments.length ? 't' : 'f')
-  console.log(comments)
-
   return (
     <div>
       <div className={classes.commentsOuterContainer}>
