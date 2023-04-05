@@ -17,6 +17,10 @@ const PostDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    window.location.reload();
+  }, [])
+
+  useEffect(() => {
     dispatch(getPost(id));
   }, [dispatch, id]);
 
