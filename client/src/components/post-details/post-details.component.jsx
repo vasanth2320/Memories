@@ -39,11 +39,9 @@ const PostDetails = () => {
 
   if (!post) return null;
 
-  // const openPost = (_id) => history.push(`/posts/${_id}`);
   const openPost = (_id) => {
-    // history.push(`/posts/${post._id || post.uid }`)
-    // window.location.reload()
-    console.log(_id)
+    history.push(`/posts/${_id}`)
+    window.location.reload()
   }
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 

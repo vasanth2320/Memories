@@ -11,6 +11,7 @@ export default makeStyles((theme) => ({
   card: {
     display: 'flex',
     width: '100%',
+    paddingBottom: '66px',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
       flexDirection: 'column',
