@@ -48,6 +48,7 @@ export const createPost = (post, history) => async (dispatch) => {
     const { data } = await api.createPost(post);
 
     history.push(`/posts/${data._id}`);
+    window.location.reload();
 
     dispatch({ type: POST_ACTION_TYPES.SET_NEW_POST, payload: data });
     dispatch({ type: POST_ACTION_TYPES.END_LOADING });

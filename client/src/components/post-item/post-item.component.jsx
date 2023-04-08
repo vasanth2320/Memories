@@ -8,7 +8,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import moment from "moment";
 
-import PostDetails from "../post-details/post-details.component.jsx";
 import { deletePost, likePost } from "../../store/post/post.action.js";
 
 import useStyles from "./post-item.styles.jsx";
@@ -52,8 +51,6 @@ const Post = ({ post, setCurrentId }) => {
       );
     }
 
-    console.log(user?.result?._id + '1' || user?.uid)
-
     return (
       <>
         <ThumbUpAltOutlined fontSize="small" />
@@ -64,7 +61,7 @@ const Post = ({ post, setCurrentId }) => {
 
   const openPost = () => {
     history.push(`/posts/${post._id || post.uid }`)
-    return <PostDetails/>
+    window.location.reload()
   }
 
   return (
