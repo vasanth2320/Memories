@@ -6,8 +6,9 @@ people can login, signup, logout, they can post images , they can see and like o
 as well.
 
 Website:
-● Server - https://memories-app-production-dbdc.up.railway.app
-● Client - https://cool-queijadas-ed7a03.netlify.app
+  ● Server - https://memories-app-production-dbdc.up.railway.app
+
+  ● Client - https://cool-queijadas-ed7a03.netlify.app
 
 
 First use ```npm install``` to install concurrently
