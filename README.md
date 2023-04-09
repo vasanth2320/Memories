@@ -8,9 +8,9 @@ as well.
 
 Live-Website-Links:
 
-    ● Server - https://memories-app-production-dbdc.up.railway.app
+   ● Server-side - https://memories-app-production-dbdc.up.railway.app
 
-    ● Client - https://cool-queijadas-ed7a03.netlify.app
+   ● Client-side - https://cool-queijadas-ed7a03.netlify.app
 
 
 First use ```npm install``` to install concurrently
